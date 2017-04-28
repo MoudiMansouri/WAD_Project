@@ -48,8 +48,11 @@
   pageContext.setAttribute("songs", songs);
 %>
 
-
-    <div id="score" class="hidden"></div>
+<div class="row">
+  <div class="col-md-3 col-md-offset-4 col-centered text-center">
+  <div id="score" class="hidden">Your scored </div>
+  </div>
+</div>
 
 <div id="all" class="row">
   <div class="col-md-3 col-md-offset-4 col-centered text-center">

@@ -24,7 +24,7 @@ public class DBConnection {
 //
 //        try {
         String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        String url = "jdbc:derby://localhost:1527/Users";
+        String url = "jdbc:derby://localhost:1527/wad_project";
 
         System.out.println("ENTERED CLASS ===========");
 //
@@ -37,7 +37,7 @@ public class DBConnection {
 //                    = (DataSource) ctx.lookup("jdbc/myDatasource");
 //            con = ds.getConnection();
 // ==========================================================
-            con = DriverManager.getConnection(url, "a", "a");
+            con = DriverManager.getConnection(url, "root", "moudiadmin");
         } catch (SQLException | ClassNotFoundException ex) {
             
         }

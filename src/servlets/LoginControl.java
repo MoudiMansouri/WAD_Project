@@ -44,31 +44,24 @@ public class LoginControl extends HttpServlet {
 
             String username = params.get("uname")[0];
 //            String password = params.get("password")[0];
-
             ArrayList<Integer> userInfo = userDAO.userExists(username);
+            System.out.println("size " + userInfo.size());
             int id = userInfo.get(0);
-            int admin = userInfo.get(1);
+//            int admin = userInfo.get(1);
 
             if (id > 0) {
-
                 System.out.println("id " + id);
                 request.getSession().setAttribute("user", id);
                 System.out.println("id --- " + id);
-                
-                if(admin > 0){
-                    request.getSession().setAttribute("admin", admin); 
-                }
-
+//                if(admin > 0){
+//                    request.getSession().setAttribute("admin", admin);
+//                }
                 RequestDispatcher rd = request.getRequestDispatcher("/menu.jsp");
-
                 rd.forward(request, response);
 
             } else {
-
                 request.setAttribute("error", "Username and password not correct!");
-
                 RequestDispatcher rd = request.getRequestDispatcher("/LoginViewjsp.jsp");
-
                 rd.forward(request, response);
             }
 
@@ -101,15 +94,15 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String username = request.getParameter("uname");
-        String password = request.getParameter("password");
-        Boolean credentialsExist;
-        try (PrintWriter out = response.getWriter()) {
-            credentialsExist = userDAO.credentialExists(username, password);
-            out.println(credentialsExist);
-        }
-    
+        processRequest(request, response);
+//        String username = request.getParameter("uname");
+//        String password = request.getParameter("password");
+//        Boolean credentialsExist;
+//        try (PrintWriter out = response.getWriter()) {
+//            credentialsExist = userDAO.credentialExists(username, password);
+//            out.println(credentialsExist);
+//        }
+//
     }
 
     /**

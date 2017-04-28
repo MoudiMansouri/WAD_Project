@@ -33,10 +33,13 @@ public class ArtistController extends HttpServlet {
         request.getSession().setAttribute("num",new Integer(0));
         String s = request.getParameter("artist");
         System.out.println(s);
+        Query artist = em.createQuery("SELECT artist FROM ArtistEntity artist WHERE artist.name=:name").setParameter("name",s);
+        ArtistEntity artistEntity = (ArtistEntity) artist.getSingleResult();
         Query songs = em.createQuery("SELECT s FROM SongsEntity s JOIN s.artistEntity a WHERE a.name=:name").setParameter("name",s);
         List<SongsEntity> songList= songs.getResultList();
         request.getSession().setAttribute("songs", songList);
         request.getSession().setAttribute("score",0);
+        request.getSession().setAttribute("artist", artistEntity);
         requestDispatcher.forward(request,response);
     }
 }

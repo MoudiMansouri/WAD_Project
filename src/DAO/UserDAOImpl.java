@@ -5,12 +5,15 @@
  */
 package DAO;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DB.DBConnection;
+import Database.ConnectionController;
+
 import java.util.ArrayList;
 
 /**
@@ -28,9 +31,9 @@ public class UserDAOImpl implements UserDAO {
         try {
             Statement instr = null;
             try {
-                instr = dbc.getCon().createStatement();
-            } catch (SQLException ex) {
-                
+                instr = ConnectionController.getConnection().createStatement();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
 
 //            int id = 1 + (int) (Math.random() * 1000);
@@ -49,7 +52,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public ArrayList<Integer> userExists(String user) {
         int id = 0;
-        int admin = 0;
+//        int admin = 0;
 
         ArrayList<Integer> userInfo = new ArrayList<>();
         
@@ -57,9 +60,9 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = dbc.getCon().createStatement();
-            } catch (SQLException ex) {
-               
+                instr = ConnectionController.getConnection().createStatement();
+            } catch (Exception ex) {
+               ex.printStackTrace();
             }
 
             String sql = "SELECT * FROM users WHERE username= '" + user + "'";
@@ -67,12 +70,13 @@ public class UserDAOImpl implements UserDAO {
             ResultSet rs = instr.executeQuery(sql);
 
             if (rs.next()) {
+                System.out.println("here");
                 id = Integer.parseInt(rs.getString(1));
-                admin = Integer.parseInt(rs.getString(10));
+//                admin = Integer.parseInt(rs.getString(10));
                 rs.close();
                 instr.close();
                 userInfo.add(id);
-                userInfo.add(admin);
+//                userInfo.add(admin);
 
                 return userInfo;
             }
@@ -89,9 +93,9 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = dbc.getCon().createStatement();
-            } catch (SQLException ex) {
-                
+                instr = ConnectionController.getConnection().createStatement();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
             String sql = "SELECT * FROM users WHERE username= '" + user.toLowerCase() + "'";
 
@@ -114,9 +118,9 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = dbc.getCon().createStatement();
-            } catch (SQLException ex) {
-                
+                instr = ConnectionController.getConnection().createStatement();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         String sql = "SELECT * FROM users WHERE username= '" + username.toLowerCase() + "' AND password= '"+ password + "'";
 
