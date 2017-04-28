@@ -26,4 +26,27 @@
     <welcome-file-list>
         <welcome-file>menu.jsp</welcome-file>
     </welcome-file-list>
+
+
+<servlet>
+        <servlet-name>LoginControl</servlet-name>
+        <servlet-class>servlets.LoginControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>servlets.RegisterController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginControl</servlet-name>
+        <url-pattern>/LoginControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/RegisterController</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 </web-app>
