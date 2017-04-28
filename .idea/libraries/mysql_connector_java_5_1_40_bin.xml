@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="mysql-connector-java-5.1.40-bin">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/jars/mysql-connector-java-5.1.40-bin.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/jackson-core-2.2.3.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/com.fasterxml.jackson.databind.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

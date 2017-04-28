@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="wad_project@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="wad_project">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="homework1"/>
+    <schema id="4" parent="1" name="homework2"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="sys"/>
+    <schema id="9" parent="1" name="wad_tasks"/>
+    <table id="10" parent="2" name="artist"/>
+    <table id="11" parent="2" name="songs"/>
+    <column id="12" parent="10" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="13" parent="10" name="NAME">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="14" parent="10" name="NAME_UNIQUE">
+      <ColNames>NAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="15" parent="10" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="16" parent="10" name="NAME_UNIQUE">
+      <ColNames>NAME</ColNames>
+      <UnderlyingIndexName>NAME_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="17" parent="11" name="ID">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="11" name="file_name">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="11" name="file_path">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="11" name="correct_answer">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="11" name="var_answer_one">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="11" name="var_answer_two">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="11" name="var_answer_three">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="11" name="var_answer_four">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="11" name="Artist">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="26" parent="11" name="ID_UNIQUE">
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="27" parent="11" name="PK_ARTSIT_idx">
+      <ColNames>Artist</ColNames>
+    </index>
+    <key id="28" parent="11" name="PRIMARY">
+      <ColNames>file_name
+ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="29" parent="11" name="ID_UNIQUE">
+      <ColNames>ID</ColNames>
+      <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
+    </key>
+    <foreign-key id="30" parent="11" name="Artist_FK">
+      <ColNames>Artist</ColNames>
+      <RefSchemaName>wad_project</RefSchemaName>
+      <RefTableName>artist</RefTableName>
+      <RefColNames>ID</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>
