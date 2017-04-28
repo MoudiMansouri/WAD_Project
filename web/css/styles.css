@@ -1,0 +1,70 @@
+
+.wave1{
+    max-width:400px;
+    margin : 0 auto;
+}
+
+.menuItem{
+    border-radius: 5px;
+    background-color: #0E0B16;
+    margin: 10px 10px 10px 10px;
+    width: 200px;
+}
+
+.menuItem:hover{
+    cursor: pointer;
+}
+
+.col-centered{
+    float : none;
+    margin: 0 auto;
+}
+
+.answers{
+    padding: 50px 0px 50px 0px;
+    float: none;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.answer{
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+    margin: 10px 10px 10px 10px;
+}
+
+
+
+.artists{
+    padding: 50px 5px 50px 5px;
+    float: none;
+    margin: 0 auto;
+    max-width: 500px;
+}
+.artist{
+    padding: 5px 5px 5px 5px;
+    margin: 10px 10px 10px 10px;
+}
+
+.artS{
+    font-weight: bold;
+    color: #E7DFDD;
+    margin-left: 40px;
+}
+
+.hidden{
+    display: none;
+}
+
+.shown{
+    display: inline;
+}
+
+body{
+    background: #0E0B16;
+    background: linear-gradient(#E7DFDD,#0E0B16);
+}
+
+h2{
+    margin-left: 100px ;
+}
