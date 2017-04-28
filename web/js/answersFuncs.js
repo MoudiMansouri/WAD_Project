@@ -22,7 +22,7 @@ $(document).ready(function() {
                 alert("Score is : " + JSON.parse(response));
                 wavesurfer.destroy();
                 $("#score").removeClass("hidden").addClass("shown");
-                $("#score").text(response);
+                $("#score").text("You scored " + response + " out of 10");
             }
         });
         $("#answers_furm".concat(number)).addClass('hidden').removeClass("show");

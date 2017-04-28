@@ -5,6 +5,8 @@
         <jta-data-source>java:/WADproject</jta-data-source>
         <class>Entity.ArtistEntity</class>
         <class>Entity.SongsEntity</class>
+        <class>Entity.ScoresEntity</class>
+        <class>Entity.UsersEntity</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create-table"/>

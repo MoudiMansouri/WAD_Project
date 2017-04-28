@@ -26,6 +26,7 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         Map<String, String[]> params = request.getParameterMap();
         response.setContentType("text/html;charset=UTF-8");
+        System.out.println("Here");
         try (PrintWriter out = response.getWriter()) {
             String name = params.get("name")[0];
             String username = params.get("uname")[0];

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.io.IOException;
 
+import Entity.ArtistEntity;
+import Entity.ScoresEntity;
+import Entity.UsersEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -23,6 +26,8 @@ public class AnswerController extends HttpServlet {
     private EntityManager em;
     @Resource
     UserTransaction userTransaction;
+    @Resource
+    private javax.transaction.UserTransaction utx;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         process(request,response);
@@ -53,6 +58,23 @@ public class AnswerController extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             String sendScore = objectMapper.writeValueAsString(new Integer(score));
             System.out.println(sendScore);
+
+
+            ScoresEntity scoresEntity = new ScoresEntity();
+            scoresEntity.setArtistByArtist((ArtistEntity) request.getSession().getAttribute("artist"));
+            scoresEntity.setScore(score);
+            Query user = em.createQuery("select users from UsersEntity users where users.id=:id").setParameter("id",request.getSession().getAttribute("user"));
+            UsersEntity usersEntity = (UsersEntity) user.getSingleResult();
+            scoresEntity.setUsersByUser(usersEntity);
+
+            try{
+                utx.begin();
+                em.persist(scoresEntity);
+                utx.commit();
+                System.out.println("added score");
+            }catch (Exception e){
+                e.printStackTrace();
+            };
             response.getWriter().write(sendScore);
         }
     }
