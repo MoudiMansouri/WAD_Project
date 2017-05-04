@@ -32,7 +32,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
     </head>
-    <body onload="fillFields()">
+    <body onload="fillFields()" class="form-style-2">
         <div id="content">
             <div class="header">
                 <img src="./img/btn_playgame.png" width="100px"/>
@@ -45,29 +45,29 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <h1>Registration form </h1>   
+            <h1 class="form-style-2-heading">Registration form </h1>   
             <form method="POST" action="RegisterController"> 
                 <div class="form-element" id="divName">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" size="40" required>
+                    <input type="text" name="name" id="name" size="40" required class="input-field">
                 </div>
                 <div class="form-element" id="divUsername">
                     <label for="username">Username</label>
-                    <input type="text" name="uname" id="uname" required >
+                    <input type="text" name="uname" id="uname" required class="input-field">
                 </div>
                 <div class="form-element" id ="divPassword">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" required onfocus="resetBorder()">
+                    <input type="password" name="password" id="password" required onfocus="resetBorder()" class="input-field">
                 </div>
                 <div class="form-element" id = "divrPassword">
                     <label for="rPassword">Repeat password</label>
-                    <input type="password" name="rPassword" id="rPassword" required onblur="check()" onfocus="resetBorder()">
+                    <input type="password" name="rPassword" id="rPassword" required onblur="check()" onfocus="resetBorder()" class="input-field">
                     <span id="error" class="red"></span>
                 </div>
 
                 <div class="form-element" id = "divEmail">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required >
+                    <input type="email" id="email" name="email" required class="input-field">
                 </div>
               
                 <div class="form-element">

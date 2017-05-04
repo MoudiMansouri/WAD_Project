@@ -46,7 +46,9 @@ public class LoginControl extends HttpServlet {
 //            String password = params.get("password")[0];
             ArrayList<Integer> userInfo = userDAO.userExists(username);
             System.out.println("size " + userInfo.size());
-            int id = userInfo.get(0);
+            int id=-1;
+            if(userInfo.size()>0)
+                id = userInfo.get(0);
 //            int admin = userInfo.get(1);
 
             if (id > 0) {
@@ -63,6 +65,7 @@ public class LoginControl extends HttpServlet {
                 request.setAttribute("error", "Username and password not correct!");
                 RequestDispatcher rd = request.getRequestDispatcher("/LoginViewjsp.jsp");
                 rd.forward(request, response);
+                
             }
 
         }
@@ -81,6 +84,7 @@ public class LoginControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
@@ -95,13 +99,14 @@ public class LoginControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-//        String username = request.getParameter("uname");
-//        String password = request.getParameter("password");
-//        Boolean credentialsExist;
-//        try (PrintWriter out = response.getWriter()) {
-//            credentialsExist = userDAO.credentialExists(username, password);
-//            out.println(credentialsExist);
-//        }
+        
+ //      String username = request.getParameter("uname");
+ //      String password = request.getParameter("password");
+   //     Boolean credentialsExist;
+ //       try (PrintWriter out = response.getWriter()) {
+   //         credentialsExist = userDAO.credentialExists(username, password);
+ //           out.println(credentialsExist);
+   //    }
 //
     }
 
