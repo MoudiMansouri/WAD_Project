@@ -29,26 +29,27 @@
         <link rel="stylesheet" href="./css/styles.css">
         <script src="./js/menuFuncs.js"></script>
 
-    </head>
 </head>
-<body onload="checkFirstVisit()">
+<body>
+<div class="container">
     <div class="row">
-        <div class="col-md-3 col-md-offset-4">
+        <div class="col-md-3 col-md-offset-3 text-center  .col-sm-4">
             <h2>Select Artist</h2>
-            <div class="artists">
-            <div class="row">
-                <form action="ArtistController" name="formm">
-                    <c:forEach items="${applicationScope.Artists}" var="artist">
-                        <div class="col-md-3 menuItem">
-                            <div class="artist" id=${artist.name}><span class="artS">${artist.name}</span> </div>
-                        </div>
-                    </c:forEach>
-
-                        <input type="hidden" value="" id="artist_name" name="artist">
-                </form>
-             </div>
-            </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 .col-sm-6 .col-sm-offset-4">
+        <form action="ArtistController" name="formm">
+            <c:forEach items="${applicationScope.Artists}" var="artist">
+                <div class="col-md-3 col-sm-12 text-center menuItem">
+                    <div class="artist" id=${artist.name}><span class="artS">${artist.name}</span> </div>
+                </div>
+            </c:forEach>
+            <input type="hidden" value="" id="artist_name" name="artist">
+        </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

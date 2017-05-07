@@ -29,11 +29,31 @@
   <script src="./js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="./css/styles.css">
   <script src="./js/answersFuncs.js"></script>
+    <script src="./js/sidenav.js"></script>
 
 </head>
 <body>
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="">Home</a>
+    <a href="menu.jsp">Select Artist</a>
+    <a href="#">My Profile</a>
+    <a href="">Logout</a>
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()" class="glyphicon glyphicon-menu-right">Menu
+</span>
+<div id="main">
+
+
+
+<div class="container">
+
 <div class="row">
-  <div class="col-md-3 col-md-offset-4 text-center col-centered">
+  <div class="col-md-6 col-md-offset-3 text-center col-centered">
     <h2>What are they even saying?</h2>
   </div>
 </div>
@@ -48,45 +68,53 @@
   pageContext.setAttribute("songs", songs);
 %>
 
+    <div class="row">
+          <div class="col-md-3 col-md-offset-4 col-centered text-center">
+              <div id="score" class="hidden">Your scored </div>
+          </div>
+    </div>
+
 <div class="row">
-  <div class="col-md-3 col-md-offset-4 col-centered text-center">
-  <div id="score" class="hidden">Your scored </div>
-  </div>
+    <div class="col-md-3 col-md-offset-4 col-centered text-center">
+        <div id="song" class="" /></div>
+        <div id="number" class=<c:out value="${num}" />></div>
+
+        <script>
+          var num = $("#number").attr('class');
+          var songsArray = [];
+          <c:set var="counter" value="0" scope="page"/>
+          <c:forEach items="${songs}" var="songs">
+          songsArray[${pageScope.counter}] ="${songs.filePath}";
+          <c:set var="counter" value="${counter + 1}" scope="page"/>
+          </c:forEach>
+          var path = songsArray[num];
+          $("#song").addClass(path);
+        </script>
+
+        <c:set var="count" value="0" scope="page"/>
 </div>
 
-<div id="all" class="row">
-  <div class="col-md-3 col-md-offset-4 col-centered text-center">
-
-    <div id="song" class="" /></div>
-    <div id="number" class=<c:out value="${num}" />></div>
-
-    <script>
-      var num = $("#number").attr('class');
-      var songsArray = [];
-      <c:set var="counter" value="0" scope="page"/>
-      <c:forEach items="${songs}" var="songs">
-      songsArray[${pageScope.counter}] ="${songs.filePath}";
-      <c:set var="counter" value="${counter + 1}" scope="page"/>
-      </c:forEach>
-      var path = songsArray[num];
-      $("#song").addClass(path);
-    </script>
-
-    <c:set var="count" value="0" scope="page"/>
-
-    <c:forEach items="${songs}" var="songs">
-      <form action="AnswerController" name="answers_form" >
-        <div class="answers hidden" id="answers_furm<c:out value="${count}"/>">
-          <div class="answer" id="A"><c:out value="${songs.varAnswerOne}"/></div>
-          <div class="answer" id="B"><c:out value="${songs.varAnswerTwo}"/></div>
-          <div class="answer" id="C"><c:out value="${songs.varAnswerThree}"/></div>
-          <div class="answer"  id="D"><c:out value="${songs.varAnswerFour}"/></div>
-          <input type="hidden" name="option" value="" id="answer_id">
-        </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4 col-centered text-center">
+        <c:forEach items="${songs}" var="songs">
+                <form action="AnswerController" name="answers_form" >
+                <div class="hidden" id="answers_furm<c:out value="${count}"/>">
+                    <div class="answer" id="A"><c:out value="${songs.varAnswerOne}"/></div>
+                    <div class="answer" id="B"><c:out value="${songs.varAnswerTwo}"/></div>
+                    <div class="answer" id="C"><c:out value="${songs.varAnswerThree}"/></div>
+                    <div class="answer"  id="D"><c:out value="${songs.varAnswerFour}"/></div>
+                    <input type="hidden" name="option" value="" id="answer_id">
+                </div>
           <c:set var="count" value="${count + 1}" scope="page"/>
         </c:forEach>
     </form>
-  </div>
+    </div>
+
+        <div id="current-score" class=" col-md-3 col-md-offset-4 col-centered text-center"></div>
+</div>
+
+</div>
+    </div>
 <script>
     var show_num = $("#number").attr('class');
     $("#answers_furm".concat(show_num)).addClass('shown').removeClass("hidden");

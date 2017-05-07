@@ -70,7 +70,6 @@ public class UserDAOImpl implements UserDAO {
             ResultSet rs = instr.executeQuery(sql);
 
             if (rs.next()) {
-                System.out.println("here");
                 id = Integer.parseInt(rs.getString(1));
 //                admin = Integer.parseInt(rs.getString(10));
                 rs.close();

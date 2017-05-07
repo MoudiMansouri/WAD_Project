@@ -9,8 +9,8 @@ var wavesurfer = Object.create(WaveSurfer);
 
 wavesurfer.init({
     container: document.querySelector('.wave' + id),
-    waveColor: 'violet',
-    progressColor: 'purple',
+    waveColor: '#4717F6',
+    progressColor: '#A239CA',
     interact: false,
     hideScrollbar: true,
     mediaType: 'audio'
@@ -21,7 +21,6 @@ wavesurfer.on('ready', function () {
 });
 
 var song = $("#song");
-alert(song.attr('class'));
 wavesurfer.load(song.attr('class'));
 
 

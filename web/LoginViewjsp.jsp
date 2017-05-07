@@ -27,7 +27,7 @@
                 </ul>
             </nav>
 
-            <c:set var="error" value="${requestScope.get('error')[0]}" />
+            <c:set var="error" value="${requestScope.error}" />
 
 
             <c:if test= "${error != null}" >

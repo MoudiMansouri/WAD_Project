@@ -10,7 +10,6 @@ $(document).ready(function() {
         var number = parseInt($("#number").attr('class'));
         var index = $("#number").attr('class');
         index++;
-        alert(index);
         $.ajax({
             type: "get",
             url : "AnswerController",
@@ -19,10 +18,18 @@ $(document).ready(function() {
                 num : index
             },
             success: function (response) {
-                alert("Score is : " + JSON.parse(response));
-                wavesurfer.destroy();
-                $("#score").removeClass("hidden").addClass("shown");
-                $("#score").text("You scored " + response + " out of 10");
+                var stat = JSON.parse(response);
+                var stat_comp = stat.statuss;
+                var st = "stop";
+                if(!stat_comp.localeCompare(st)){
+                    wavesurfer.destroy();
+                    $("#score").removeClass("hidden").addClass("shown");
+                    $("#score").text("You scored " + stat.score + " out of 10");
+                    $("#current-score").addClass("hidden");
+                }else{
+                    $("#current-score").text(stat.score+ "/10");
+                }
+
             }
         });
         $("#answers_furm".concat(number)).addClass('hidden').removeClass("show");
