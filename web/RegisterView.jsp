@@ -34,15 +34,11 @@
     </head>
     <body onload="fillFields()" class="form-style-2">
         <div id="content">
-            <div class="header">
-                <img src="./img/btn_playgame.png" width="100px"/>
-                <span class="header-text">Game</span>
-            </div>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <a href="C:\Users\Andreylyon\Documents\NetBeansProjects\WADProject\web\LoginViewjsp.jsp">Home</a>
+                    <a href="C:\Users\Andreylyon\Documents\NetBeansProjects\WADProject\web\RegisterView.jsp">Register</a>
+
                 </ul>
             </nav>
             <h1 class="form-style-2-heading">Registration form </h1>   

@@ -21,8 +21,8 @@
             <nav>
                 <ul>
                     <li><a href='#'>Home</a></li>
-                    <li><a href='LoginView'>Register</a>
-                    <li><a href='#'>Contact</a>
+                    <li><a href='LoginView'>Register</a></li>
+                    <li><a href="LogoutController">Logout</a></li>
 
                 </ul>
             </nav>

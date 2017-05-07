@@ -7,10 +7,6 @@ package DAO;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author E-M
- */
 public interface UserDAO {
     
     public abstract void addUser(String name, String username, String password, String email);
@@ -19,6 +15,6 @@ public interface UserDAO {
     
     public abstract boolean credentialExists(String user);
     
-    public abstract boolean credentialExists(String username, String password);
+    public abstract boolean credentialsExists(String username, String password);
     
 }

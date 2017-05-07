@@ -5,21 +5,15 @@
  */
 package DAO;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DB.DBConnection;
-import Database.ConnectionController;
-
 import java.util.ArrayList;
 
-/**
- *
- * @author E-M
- */
+
 public class UserDAOImpl implements UserDAO {
 
     DBConnection dbc = DBConnection.getInstance();
@@ -31,14 +25,11 @@ public class UserDAOImpl implements UserDAO {
         try {
             Statement instr = null;
             try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                instr = dbc.getCon().createStatement();
+            } catch (SQLException ex) {
+                
             }
 
-//            int id = 1 + (int) (Math.random() * 1000);
-            //String sql = "INSERT INTO USERS (name, username, password, email, gender, telephone, country) VALUES ('" + name + "','" + username + "',MD5('" + password + "'),'" + email + "','" + gender + "','" + telephone + "','" + country + "'" ;
-            //String sql = "INSERT INTO USERS (name, username, password, email, gender, telephone, country) VALUES ('" + name + "','" + username + "',MD5('" + password + "'),'" + email + "','" + gender + "','" + telephone + "','" + country + "')" ;//probleme de introducere in baza de date + verificare duplicate
             String sql = "INSERT INTO USERS (name, username, password, email) VALUES ('"+name+"', '"+username+"', '"+password+"', '"+email+"')";
             System.out.println(sql);
             instr.executeUpdate(sql);
@@ -52,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public ArrayList<Integer> userExists(String user) {
         int id = 0;
-//        int admin = 0;
+        int admin = 0;
 
         ArrayList<Integer> userInfo = new ArrayList<>();
         
@@ -60,9 +51,9 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (Exception ex) {
-               ex.printStackTrace();
+                instr = dbc.getCon().createStatement();
+            } catch (SQLException ex) {
+               
             }
 
             String sql = "SELECT * FROM users WHERE username= '" + user + "'";
@@ -71,11 +62,11 @@ public class UserDAOImpl implements UserDAO {
 
             if (rs.next()) {
                 id = Integer.parseInt(rs.getString(1));
-//                admin = Integer.parseInt(rs.getString(10));
+                admin = Integer.parseInt(rs.getString(10));
                 rs.close();
                 instr.close();
                 userInfo.add(id);
-//                userInfo.add(admin);
+                userInfo.add(admin);
 
                 return userInfo;
             }
@@ -92,9 +83,9 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                instr = dbc.getCon().createStatement();
+            } catch (SQLException ex) {
+                
             }
             String sql = "SELECT * FROM users WHERE username= '" + user.toLowerCase() + "'";
 
@@ -112,14 +103,14 @@ public class UserDAOImpl implements UserDAO {
         return false;
     }
     
-    public boolean credentialExists(String username, String password){
+    public boolean credentialsExists(String username, String password){
         try {
             Statement instr = null;
 
             try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                instr = dbc.getCon().createStatement();
+            } catch (SQLException ex) {
+                
             }
         String sql = "SELECT * FROM users WHERE username= '" + username.toLowerCase() + "' AND password= '"+ password + "'";
 
