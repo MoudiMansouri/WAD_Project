@@ -7,8 +7,11 @@ package servlets;
 
 import DAO.UserDAO;
 import DAO.UserDAOImpl;
+import sun.plugin2.message.Message;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +29,7 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         Map<String, String[]> params = request.getParameterMap();
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("Here");
+
         try (PrintWriter out = response.getWriter()) {
             String name = params.get("name")[0];
             String username = params.get("uname")[0];
@@ -34,13 +37,23 @@ public class RegisterController extends HttpServlet {
             String rPassword = params.get("rPassword")[0];
             String email = params.get("email")[0];
             if(userDAO.credentialExists(username)==true){
-                out.println("user already exists");
                 getServletContext().getRequestDispatcher("/RegisterView.jsp").forward(request, response);
             }
             else{
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(password.getBytes());
+                byte byteData[] = md.digest();
+                StringBuffer sb = new StringBuffer();
+                for (int i = 0; i < byteData.length; i++) {
+                    sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+                }
+
+                password = sb.toString();
                 userDAO.addUser(name, username, password, email);
                 out.println("user added to db");
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 

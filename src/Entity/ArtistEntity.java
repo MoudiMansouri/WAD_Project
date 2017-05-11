@@ -3,7 +3,7 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Moudi on 4/11/2017.
+ * Created by Moudi on 5/11/2017.
  */
 @Entity
 @Table(name = "artist", schema = "wad_project", catalog = "")

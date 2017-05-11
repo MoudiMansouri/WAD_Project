@@ -3,10 +3,10 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Moudi on 4/28/2017.
+ * Created by Moudi on 5/11/2017.
  */
 @Entity
-@Table(name = "users", schema = "wad_project")
+@Table(name = "users", schema = "wad_project", catalog = "")
 public class UsersEntity {
     private int id;
     private String name;

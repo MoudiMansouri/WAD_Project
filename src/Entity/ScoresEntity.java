@@ -3,7 +3,7 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Moudi on 4/28/2017.
+ * Created by Moudi on 5/11/2017.
  */
 @Entity
 @Table(name = "scores", schema = "wad_project", catalog = "")
@@ -11,7 +11,7 @@ public class ScoresEntity {
     private int id;
     private Integer score;
     private ArtistEntity artistByArtist;
-    private UsersEntity usersByUser;
+    private UsersEntity user;
 
     @Id
     @Column(name = "id")
@@ -53,6 +53,8 @@ public class ScoresEntity {
         return result;
     }
 
+
+
     @ManyToOne
     @JoinColumn(name = "artist", referencedColumnName = "ID")
     public ArtistEntity getArtistByArtist() {
@@ -64,12 +66,12 @@ public class ScoresEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "Id")
-    public UsersEntity getUsersByUser() {
-        return usersByUser;
+    @JoinColumn(name = "user", referencedColumnName = "ID")
+    public UsersEntity getUserByUser() {
+        return user;
     }
 
-    public void setUsersByUser(UsersEntity usersByUser) {
-        this.usersByUser = usersByUser;
+    public void setUserByUser(UsersEntity usersEntity) {
+        this.user = usersEntity;
     }
 }

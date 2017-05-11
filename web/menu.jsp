@@ -28,9 +28,43 @@
         <script src="./js/jquery-3.1.1.min.js"></script>
         <link rel="stylesheet" href="./css/styles.css">
         <script src="./js/menuFuncs.js"></script>
+        <script src="./js/sidenav.js"></script>
 
 </head>
 <body>
+
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="">Home</a>
+    <a href="menu.jsp">Select Artist</a>
+    <a href="#">My Profile</a>
+    <a href="LogoutController">Logout</a>
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()" class="glyphicon glyphicon-menu-right">Menu
+</span>
+
+
+
+<div id="main">
+
+<c:if test="${empty user}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3 text-center  .col-sm-4">
+                <h3>You can not play without logging in</h3>
+                <a href="LoginViewjsp.jsp">Login here</a>
+
+            </div>
+        </div>
+
+
+</c:if>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-md-offset-3 text-center  .col-sm-4">
@@ -51,5 +85,6 @@
         </div>
     </div>
 </div>
+    </div>
 </body>
 </html>

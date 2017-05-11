@@ -10,6 +10,7 @@ import Entity.ArtistEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
 
 @WebListener()
@@ -40,6 +41,15 @@ public class ContextListener implements ServletContextListener,
         Query loadArtist = em.createQuery("SELECT artist from ArtistEntity artist");
         List<ArtistEntity> artistEntities = loadArtist.getResultList();
         sce.getServletContext().setAttribute("Artists",artistEntities);
+        String rootPath = System.getProperty("catalina.home","C:\\Users\\Moudi\\IdeaProjects\\WAD_Project_Updated\\web");
+        ServletContext ctx = sce.getServletContext();
+        String path = ctx.getInitParameter("Songs.dir");
+        File file = new File(rootPath, File.separator + path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        ctx.setAttribute("FILES_DIR_FILE",file);
+        ctx.setAttribute("FILES_DIR",rootPath + File.separator + path);
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

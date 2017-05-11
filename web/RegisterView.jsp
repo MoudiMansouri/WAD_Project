@@ -36,8 +36,8 @@
         <div id="content">
             <nav>
                 <ul>
-                    <a href="C:\Users\Andreylyon\Documents\NetBeansProjects\WADProject\web\LoginViewjsp.jsp">Home</a>
-                    <a href="C:\Users\Andreylyon\Documents\NetBeansProjects\WADProject\web\RegisterView.jsp">Register</a>
+                    <a href="#">Home</a>
+                    <a href="LoginViewjsp.jsp">Login</a>
 
                 </ul>
             </nav>

@@ -20,12 +20,17 @@
         <servlet-name>artistController</servlet-name>
         <url-pattern>ArtistController</url-pattern>
     </servlet-mapping>
+    
+    
+
 
 
 
     <welcome-file-list>
-        <welcome-file>RegisterView.jsp</welcome-file>
+        <welcome-file>LoginViewjsp.jsp</welcome-file>
     </welcome-file-list>
+
+
 
 
 <servlet>
@@ -36,6 +41,18 @@
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>servlets.RegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutController</servlet-name>
+        <servlet-class>servlets.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addArtistController</servlet-name>
+        <servlet-class>Servlet.AddArtistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>fileAdder</servlet-name>
+        <servlet-class>Servlet.FileAdder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/LoginControl</url-pattern>
@@ -44,9 +61,27 @@
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutController</servlet-name>
+        <url-pattern>LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addArtistController</servlet-name>
+        <url-pattern>AddArtistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>fileAdder</servlet-name>
+        <url-pattern>FileAdder</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+
+
+    <context-param>
+        <param-name>Songs.dir</param-name>
+        <param-value>Songs</param-value>
+    </context-param>
 </web-app>

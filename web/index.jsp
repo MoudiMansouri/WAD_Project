@@ -40,7 +40,7 @@
     <a href="">Home</a>
     <a href="menu.jsp">Select Artist</a>
     <a href="#">My Profile</a>
-    <a href="">Logout</a>
+    <a href="LogoutController">Logout</a>
 </div>
 
 <!-- Use any element to open the sidenav -->
@@ -55,9 +55,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 text-center col-centered">
     <h2>What are they even saying?</h2>
+      <div class="wave1"></div>
   </div>
 </div>
-<div class="wave1"></div>
+
 
 <%
   Integer num = (Integer) request.getSession().getAttribute("num");

@@ -128,3 +128,12 @@ h2{
     margin-right: 5px;
     padding-right: 0px;
 }
+
+
+#add-artist-button{
+    margin-bottom: 20px;
+}
+
+#add-song-button{
+    margin-bottom: 20px;
+}

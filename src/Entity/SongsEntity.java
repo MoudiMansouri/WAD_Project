@@ -3,10 +3,10 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Moudi on 4/16/2017.
+ * Created by Moudi on 5/11/2017.
  */
 @Entity
-@Table(name = "songs", schema = "wad_project")
+@Table(name = "songs", schema = "wad_project", catalog = "")
 public class SongsEntity {
     private int id;
     private String fileName;
@@ -16,7 +16,7 @@ public class SongsEntity {
     private String varAnswerTwo;
     private String varAnswerThree;
     private String varAnswerFour;
-    private ArtistEntity artistEntity;
+    private ArtistEntity artistByArtist;
 
     @Id
     @Column(name = "ID")
@@ -98,18 +98,6 @@ public class SongsEntity {
         this.varAnswerFour = varAnswerFour;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "Artist")
-    public ArtistEntity getArtistEntity() {
-        return artistEntity;
-    }
-
-    public void setArtistEntity(ArtistEntity artistEntity) {
-        this.artistEntity = artistEntity;
-    }
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,5 +131,16 @@ public class SongsEntity {
         result = 31 * result + (varAnswerThree != null ? varAnswerThree.hashCode() : 0);
         result = 31 * result + (varAnswerFour != null ? varAnswerFour.hashCode() : 0);
         return result;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "Artist", referencedColumnName = "ID", nullable = false)
+    public ArtistEntity getArtistByArtist() {
+        return artistByArtist;
+    }
+
+    public void setArtistByArtist(ArtistEntity artistByArtist) {
+        this.artistByArtist = artistByArtist;
     }
 }

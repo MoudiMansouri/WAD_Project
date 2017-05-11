@@ -62,7 +62,7 @@ public class AnswerController extends HttpServlet {
                 ArtistEntity currentArtist = (ArtistEntity) request.getSession().getAttribute("artist");
                 Integer currentUser = (Integer) request.getSession().getAttribute("user");
                 Query prevScore = em.createQuery("SELECT s FROM ScoresEntity s WHERE s.artistByArtist=:artistName " +
-                        "AND s.usersByUser.id=:id").setParameter("artistName",currentArtist).setParameter("id",currentUser);
+                        "AND s.userByUser.id=:id").setParameter("artistName",currentArtist).setParameter("id",currentUser);
                 try{
                     ScoresEntity previousScore  = (ScoresEntity) prevScore.getSingleResult();
                     if(previousScore.getScore() < score){
@@ -78,7 +78,7 @@ public class AnswerController extends HttpServlet {
                     scoresEntity.setScore(score);
                     Query user = em.createQuery("select users from UsersEntity users where users.id=:id").setParameter("id",currentUser);
                     UsersEntity usersEntity = (UsersEntity) user.getSingleResult();
-                    scoresEntity.setUsersByUser(usersEntity);
+                    scoresEntity.setUserByUser(usersEntity);
                     try{
                         utx.begin();
                         em.persist(scoresEntity);
