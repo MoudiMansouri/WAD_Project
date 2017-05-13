@@ -137,3 +137,15 @@ h2{
 #add-song-button{
     margin-bottom: 20px;
 }
+
+.form-control{
+    margin: 5px 5px 5px 5px;
+ }
+
+label{
+    margin-top: 8px;
+}
+
+input[type="radio"]{
+    margin-top: 12px;
+}

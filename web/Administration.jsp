@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Moudi
@@ -50,42 +51,96 @@
             <div class="col-md-4 col-sm-6 artist-adder">
                 <button class="add-artist-button btn btn-default btn-lg btn-block" onclick="showArtistAdder()" id="add-artist-button">Hide Artist Artist</button>
                 <form action="AddArtistController" id="artist-adder">
-                    <label for="artist-name">Artist Name</label>
-                    <input type="text" id="artist-name" name="artistName" onblur="checkExistence()">
-                    <button type="submit" onClick="addArtist()">AddArtist</button>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="artist-name">Artist Name</label>
+                        </div>
+                        <div class="col-md-10">
+                        <input type="text" id="artist-name" name="artistName" onblur="checkExistence()" class="form-control">
+                        </div>
+                        <button type="submit" onClick="addArtist()">AddArtist</button>
+                    </div>
+
                 </form>
             </div>
 
 
             <div class="col-md-8 col-sm-6 file-adder">
                 <button class="add-song-button btn btn-default btn-lg btn-block" onclick="showSongAdder()" id="add-song-button">Hide Song Adder</button>
+                    <form action="FileAdder" method="post" enctype="multipart/form-data" id="song-adder">
+                        <label for="file-name">File name :</label>
+                        <input type="file" id="file-name" name="fileName"><br>
 
-                <form action="FileAdder" method="post" enctype="multipart/form-data" id="song-adder">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="var-answer-one">Answer One</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="var-answer-one" name="varAnswerOne" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <input type="radio" name="option" class="radio" value="A"><br>
+                            </div>
+                        </div>
 
-                    <label for="file-name">File name :</label>
-                    <input type="file" id="file-name" name="fileName"><br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="var-answer-two">Answer Two</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="var-answer-two" name="varAnswerTwo" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <input type="radio" class="radio" name="option" value="B"><br>
+                            </div>
+                        </div>
 
-                    <label for="var-answer-one">Answer One</label>
-                    <input type="text" id="var-answer-one" name="varAnswerOne">
-                    <input type="radio" name="option" value="A"><br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="var-answer-three">Answer Three</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="var-answer-three" name="varAnswerThree" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <input type="radio" name="option" class="radio" value="C"><br>
+                            </div>
+                        </div>
 
-                    <label for="var-answer-two">Answer Two</label>
-                    <input type="text" id="var-answer-two" name="varAnswerTwo">
-                    <input type="radio" name="option" value="B"><br>
 
-                    <label for="var-answer-three">Answer Three</label>
-                    <input type="text" id="var-answer-three" name="varAnswerThree">
-                    <input type="radio" name="option" value="C"><br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="var-answer-four">Answer Four</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="var-answer-four" name="varAnswerFour" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <input type="radio" name="option" class="radio" value="D"><br>
+                            </div>
+                        </div>
 
-                    <label for="var-answer-four">Answer Four</label>
-                    <input type="text" id="var-answer-four" name="varAnswerFour">
-                    <input type="radio" name="option" value="D"><br>
 
-                    <label for="artist">Artist</label>
-                    <input type="text" name="artist" id="artist">
-
-                    <input type="submit" value="Upload" onclick="addSong()">
-                </form>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="artist">Artist</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control" name="artist" id="artist">
+                                    <c:forEach items="${applicationScope.Artists}" var="artist">
+                                        <option value=${artist.name}>${artist.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input type="submit" value="Upload" onclick="addSong()">
+                            </div>
+                        </div>
+                    </form>
+                <div id="errors" class="alert alert-danger" style="display: none" ></div>
+                <div id="success" class="alert alert-success" style="display: none"></div>
             </div>
 
         </div>

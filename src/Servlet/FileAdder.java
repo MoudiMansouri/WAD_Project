@@ -17,6 +17,7 @@ import java.util.List;
 
 import Entity.ArtistEntity;
 import Entity.SongsEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -59,35 +60,37 @@ public class FileAdder extends HttpServlet {
                     }else if (fileItem.getFieldName().equals("varAnswerThree")){
                         songsEntity.setVarAnswerThree(fileItem.getString());
                     }else if (fileItem.getFieldName().equals("varAnswerFour")){
-                        System.out.println("HERE");
                         songsEntity.setVarAnswerFour(fileItem.getString());
                     }else if(fileItem.getFieldName().equals("artist")){
-                        System.out.println(fileItem.getString());
                         Query artist = em.createQuery("SELECT a FROM ArtistEntity a where a.name=:name").setParameter("name",fileItem.getString());
                         ArtistEntity artistEntity = (ArtistEntity) artist.getSingleResult();
                         songsEntity.setArtistByArtist(artistEntity);
+                    }else if(fileItem.getFieldName().equals("option")){
+                        songsEntity.setCorrectAnswer(fileItem.getString());
                     }
-
                 }else{
-                    songsEntity.setFileName("filename");
-                    songsEntity.setFilePath("path");
-                    songsEntity.setCorrectAnswer("hehehe");
+                    songsEntity.setFileName(fileItem.getName());
+                    songsEntity.setFilePath("songs/"+ fileItem.getName());
                     File file = new File(request.getServletContext().getAttribute("FILES_DIR")+File.separator+fileItem.getName());
                     fileItem.write(file);
                 }
             }
-            System.out.println("Persisted");
             try{
                 userTransaction.begin();
                 em.persist(songsEntity);
                 userTransaction.commit();
+                ObjectMapper objectMapper = new ObjectMapper();
+                String success = "Success";
+                String reply = objectMapper.writeValueAsString(success);
+                response.getWriter().write(reply);
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-
         }catch (Exception e){
             e.printStackTrace();
+            ObjectMapper objectMapper = new ObjectMapper();
+            String reply = objectMapper.writeValueAsString("Server error encountered");
+            response.getWriter().write(reply);
         }
     }
 

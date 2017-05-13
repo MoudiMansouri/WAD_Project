@@ -1,7 +1,6 @@
 /**
  * Created by Moudi on 5/9/2017.
  */
-
 function addArtist() {
     alert("hello");
     $("#artist-adder").submit(function (event) {
@@ -28,37 +27,63 @@ function addArtist() {
 
 function addSong() {
     $("#song-adder").submit(function (event) {
+        var errors = "";
+        var $checkedElement = $('input[name=option]:checked');
 
-        alert("Hello");
-        var data = new FormData($(this)[0]);
-        // var ansOne = $("#var-answer-one").val();
-        // var ansTwo = $("#var-answer-two").val();
-        // var ansThree = $("#var-answer-three".val());
-        // var ansFour = $("#var-answer-four").val();
-        // data.append("one",ansOne);
-        // data.append("two",ansTwo);
-        // data.append("three",ansThree);
-        // data.append("four",ansFour);
-        // data.append("file",song);
-        $.ajax({
-            type : "POST",
-            enctype : "multipart/form-data",
-            processData : false,
-            contentType : false,
-            cache : false,
-            url : "FileAdder",
-            data : data,
-            success: function (response) {
-                if(response==="Invalid"){
-                    alert("Invalid");
-                }else{
-                    alert("Valid");
+        if($("#file-name").val() == ''){
+            errors += "No file selected </br>";
+        }
+
+        if (! $checkedElement.length) {
+            errors += "No correct answer was selected </br>";
+        }
+
+        if($("#var-answer-one").val() == ''){
+            errors += "Answer one was left empty</br>";
+        }
+        if($("#var-answer-two").val() == ''){
+            errors += " Answer two was left empty</br>";
+        }
+        if($("#var-answer-three").val() == ''){
+            errors += " Answer three was left empty</br>";
+        }
+
+        if($("#var-answer-four").val() == ''){
+            errors += "Answer four was left empty</br>";
+        }
+
+        if(errors === ""){
+            var data = new FormData($(this)[0]);
+            $.ajax({
+                type : "POST",
+                enctype : "multipart/form-data",
+                processData : false,
+                contentType : false,
+                cache : false,
+                url : "FileAdder",
+                data : data,
+                success: function (response) {
+                    alert(response)
+                    if(response==='"Success"'){
+                        alert("yay");
+                        $("#success").show();
+                        $("#errors").hide();
+                        $("#success").empty();
+                        $("#success").append("Song added into the database successfully");
+                    }else{
+                        $("#errors").show();
+                        $("#errors").empty();
+                        $("#errors").append(errors);
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            $("#errors").show();
+            $("#errors").empty();
+            $("#errors").append(errors);
+        }
         event.preventDefault();
-        alert("Sent");
-    })
+    });
 }
 
 
