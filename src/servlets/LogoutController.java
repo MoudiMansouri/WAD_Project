@@ -58,7 +58,7 @@ public class LogoutController extends HttpServlet {
             throws ServletException, IOException {
                         int user = (int)request.getSession().getAttribute("user");
         if(user < 0) request.getSession().removeAttribute("user");
-        getServletContext().getRequestDispatcher("/LoginViewjsp.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
     }
 
     /**

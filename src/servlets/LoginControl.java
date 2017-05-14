@@ -45,16 +45,19 @@ public class LoginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
+        PrintWriter out=null;
+        try {
+            out = response.getWriter();
             Map<String, String[]> params = request.getParameterMap();
 
             String username = params.get("uname")[0];
             String password = params.get("password")[0];
-            ArrayList<Integer> userInfo = userDAO.userExists(username);
-            System.out.println("size " + userInfo.size());
+            Boolean isValid = userDAO.credentialsExists(username, password);
+            System.out.println("size " + isValid);
             int id=-1;
-
+            ArrayList<Integer> userInfo=userDAO.userExists(username);
+            if(isValid == true && userInfo.size()>0)
+                id = userInfo.get(0);
             if(username.equals("admin")){
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 md.update(password.getBytes());
@@ -74,7 +77,7 @@ public class LoginControl extends HttpServlet {
                     rd.forward(request,response);
                 }catch (Exception e){
                     request.setAttribute("error", "Username and password not correct!");
-                    RequestDispatcher rd = request.getRequestDispatcher("/LoginViewjsp.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/LoginView.jsp");
                     rd.forward(request, response);
                 }
 
@@ -95,8 +98,8 @@ public class LoginControl extends HttpServlet {
                 rd.forward(request, response);
 
             } else {
-                request.setAttribute("error", "Username and password not correct!");
-                RequestDispatcher rd = request.getRequestDispatcher("/LoginViewjsp.jsp");
+                request.getSession().setAttribute("error", "Username and password does not match!");
+                RequestDispatcher rd = request.getRequestDispatcher("/LoginView.jsp");
                 rd.forward(request, response);
                 
             }
@@ -135,14 +138,6 @@ public class LoginControl extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
- //      String username = request.getParameter("uname");
- //      String password = request.getParameter("password");
-   //     Boolean credentialsExist;
- //       try (PrintWriter out = response.getWriter()) {
-   //         credentialsExist = userDAO.credentialExists(username, password);
- //           out.println(credentialsExist);
-   //    }
-//
     }
 
     /**

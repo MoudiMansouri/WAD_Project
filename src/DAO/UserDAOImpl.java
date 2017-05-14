@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DAO;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DB.DBConnection;
-import Database.ConnectionController;
-
 import java.util.ArrayList;
 
 
@@ -27,17 +29,12 @@ public class UserDAOImpl implements UserDAO {
 
         try {
             Statement instr = null;
-            try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (SQLException ex) {
-                
-            }
-
+            instr = dbc.getCon().createStatement();
             String sql = "INSERT INTO USERS (name, username, password, email) VALUES ('"+name+"', '"+username+"', '"+password+"', '"+email+"')";
             System.out.println(sql);
             instr.executeUpdate(sql);
             instr.close();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             
         }
 
@@ -53,23 +50,18 @@ public class UserDAOImpl implements UserDAO {
         try {
             Statement instr = null;
 
-            try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (Exception e) {
-               e.printStackTrace();
-            }
+            
+            instr = dbc.getCon().createStatement();
 
             String sql = "SELECT * FROM users WHERE username= '" + user + "'";
 
             ResultSet rs = instr.executeQuery(sql);
 
             if (rs.next()) {
-                id = Integer.parseInt(rs.getString(1));
-//                admin = Integer.parseInt(rs.getString(10));
+                id = Integer.parseInt(rs.getString("ID"));
                 rs.close();
                 instr.close();
                 userInfo.add(id);
-              //  userInfo.add(admin);
 
                 return userInfo;
             }
@@ -86,8 +78,8 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (Exception ex) {
+                instr = dbc.getCon().createStatement();
+            } catch (SQLException ex) {
                 
             }
             String sql = "SELECT * FROM users WHERE username= '" + user.toLowerCase() + "'";
@@ -106,15 +98,12 @@ public class UserDAOImpl implements UserDAO {
         return false;
     }
     
+    @Override
     public boolean credentialsExists(String username, String password){
         try {
             Statement instr = null;
-
-            try {
-                instr = ConnectionController.getConnection().createStatement();
-            } catch (SQLException ex) {
-                
-            }
+                instr = dbc.getCon().createStatement();
+            
         String sql = "SELECT * FROM users WHERE username= '" + username.toLowerCase() + "' AND password= '"+ password + "'";
 
             ResultSet rs = instr.executeQuery(sql);
@@ -124,7 +113,7 @@ public class UserDAOImpl implements UserDAO {
                 instr.close();
                 return true;
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -134,3 +123,4 @@ public class UserDAOImpl implements UserDAO {
     
 
 }
+
