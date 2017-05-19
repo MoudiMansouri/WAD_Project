@@ -37,7 +37,7 @@
             <nav>
                 <ul>
                     <a href="#">Home</a>
-                    <a href="LoginViewjsp.jsp">Login</a>
+                    <a href="LoginView.jsp">Login</a>
 
                 </ul>
             </nav>

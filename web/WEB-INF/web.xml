@@ -27,7 +27,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>LoginViewjsp.jsp</welcome-file>
+        <welcome-file>LoginView.jsp</welcome-file>
     </welcome-file-list>
 
 

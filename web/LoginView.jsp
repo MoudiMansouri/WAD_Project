@@ -46,13 +46,12 @@
                 </ul>
             </nav>
 
-            <c:set var="error" value="${requestScope.get('error')[0]}" />
+            <c:set var="error" value="${requestScope.error}" />
 
 
             <c:if test= "${error != null}" >
                 <h3>${error}</h3>
             </c:if>
-
 
 
             <h1 class="form-style-2-heading">Login form</h1>

@@ -26,7 +26,6 @@ public class AddArtistController extends HttpServlet {
     private UserTransaction userTransaction;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("hello");
         String artistName = request.getParameter("artistName");
         Query ex = em.createQuery("SELECT a FROM ArtistEntity a WHERE a.name=:name").setParameter("name",artistName);
         try{
@@ -35,7 +34,6 @@ public class AddArtistController extends HttpServlet {
             String reply = objectMapper.writeValueAsString("Invalid");
             response.getWriter().write(reply);
         }catch (Exception e){
-
             try {
                 userTransaction.begin();
                 ArtistEntity artistEntity = new ArtistEntity();

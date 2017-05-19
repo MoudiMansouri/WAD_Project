@@ -2,9 +2,7 @@
  * Created by Moudi on 5/9/2017.
  */
 function addArtist() {
-    alert("hello");
     $("#artist-adder").submit(function (event) {
-        alert("Hello");
         var artistName = $("#artist-name").val();
         $.ajax({
             type : "POST",
@@ -13,14 +11,21 @@ function addArtist() {
                 artistName : artistName
             },
             success: function (response) {
-                if(response==="Invalid"){
-                    alert("Invalid");
+                if(response==='"Invalid"'){
+                    $("#artist-errors").show();
+                    $("#artist-success").hide();
+                    $("#artist-errors").empty();
+                    $("#artist-errors").append("Artist already exists");
                 }else{
-                    alert("Valid");
+
+                    $("#artist-success").show();
+                    $("#artist-errors").hide();
+                    $("#artist-success").empty();
+                    $("#artist-success").append("Artist added successfully ");
+
                 }
             }
         });
-        alert("Sent");
         event.preventDefault();
     })
 }
@@ -29,15 +34,12 @@ function addSong() {
     $("#song-adder").submit(function (event) {
         var errors = "";
         var $checkedElement = $('input[name=option]:checked');
-
         if($("#file-name").val() == ''){
             errors += "No file selected </br>";
         }
-
         if (! $checkedElement.length) {
             errors += "No correct answer was selected </br>";
         }
-
         if($("#var-answer-one").val() == ''){
             errors += "Answer one was left empty</br>";
         }
@@ -47,11 +49,9 @@ function addSong() {
         if($("#var-answer-three").val() == ''){
             errors += " Answer three was left empty</br>";
         }
-
         if($("#var-answer-four").val() == ''){
             errors += "Answer four was left empty</br>";
         }
-
         if(errors === ""){
             var data = new FormData($(this)[0]);
             $.ajax({
@@ -63,15 +63,14 @@ function addSong() {
                 url : "FileAdder",
                 data : data,
                 success: function (response) {
-                    alert(response)
                     if(response==='"Success"'){
-                        alert("yay");
                         $("#success").show();
                         $("#errors").hide();
                         $("#success").empty();
                         $("#success").append("Song added into the database successfully");
                     }else{
                         $("#errors").show();
+                        $("#success").hide();
                         $("#errors").empty();
                         $("#errors").append(errors);
                     }

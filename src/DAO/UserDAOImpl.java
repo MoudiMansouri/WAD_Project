@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DB.DBConnection;
+import Database.ConnectionController;
+
 import java.util.ArrayList;
 
 
@@ -29,12 +31,12 @@ public class UserDAOImpl implements UserDAO {
 
         try {
             Statement instr = null;
-            instr = dbc.getCon().createStatement();
+            instr = ConnectionController.getConnection().createStatement();
             String sql = "INSERT INTO USERS (name, username, password, email) VALUES ('"+name+"', '"+username+"', '"+password+"', '"+email+"')";
             System.out.println(sql);
             instr.executeUpdate(sql);
             instr.close();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             
         }
 
@@ -51,7 +53,7 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             
-            instr = dbc.getCon().createStatement();
+            instr =  ConnectionController.getConnection().createStatement();
 
             String sql = "SELECT * FROM users WHERE username= '" + user + "'";
 
@@ -65,7 +67,7 @@ public class UserDAOImpl implements UserDAO {
 
                 return userInfo;
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -78,7 +80,7 @@ public class UserDAOImpl implements UserDAO {
             Statement instr = null;
 
             try {
-                instr = dbc.getCon().createStatement();
+                instr =  ConnectionController.getConnection().createStatement();
             } catch (SQLException ex) {
                 
             }
@@ -91,7 +93,7 @@ public class UserDAOImpl implements UserDAO {
                 instr.close();
                 return true;
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -102,7 +104,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean credentialsExists(String username, String password){
         try {
             Statement instr = null;
-                instr = dbc.getCon().createStatement();
+                instr = ConnectionController.getConnection().createStatement();
             
         String sql = "SELECT * FROM users WHERE username= '" + username.toLowerCase() + "' AND password= '"+ password + "'";
 
@@ -113,7 +115,7 @@ public class UserDAOImpl implements UserDAO {
                 instr.close();
                 return true;
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         

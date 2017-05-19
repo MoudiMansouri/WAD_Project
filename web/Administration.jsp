@@ -32,6 +32,9 @@
 </head>
 <body>
 
+<c:if test="${sessionScope.user} == 3">
+    <h1>Hello Admin</h1>
+</c:if>
 
 
 <div id="mySidenav" class="sidenav">
@@ -56,12 +59,13 @@
                             <label for="artist-name">Artist Name</label>
                         </div>
                         <div class="col-md-10">
-                        <input type="text" id="artist-name" name="artistName" onblur="checkExistence()" class="form-control">
+                        <input type="text" id="artist-name" name="artistName" class="form-control">
                         </div>
                         <button type="submit" onClick="addArtist()">AddArtist</button>
                     </div>
-
                 </form>
+                <div id="artist-errors" class="alert alert-danger" style="display: none" ></div>
+                <div id="artist-success" class="alert alert-success" style="display: none"></div>
             </div>
 
 

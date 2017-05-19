@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-md-3 col-md-offset-3 text-center  .col-sm-4">
                 <h3>You can not play without logging in</h3>
-                <a href="LoginViewjsp.jsp">Login here</a>
+                <a href="LoginView.jsp">Login here</a>
 
             </div>
         </div>

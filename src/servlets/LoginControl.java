@@ -47,7 +47,6 @@ public class LoginControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out=null;
         try {
-            out = response.getWriter();
             Map<String, String[]> params = request.getParameterMap();
 
             String username = params.get("uname")[0];
@@ -56,8 +55,10 @@ public class LoginControl extends HttpServlet {
             System.out.println("size " + isValid);
             int id=-1;
             ArrayList<Integer> userInfo=userDAO.userExists(username);
-            if(isValid == true && userInfo.size()>0)
-                id = userInfo.get(0);
+
+
+
+
             if(username.equals("admin")){
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 md.update(password.getBytes());
@@ -80,29 +81,26 @@ public class LoginControl extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher("/LoginView.jsp");
                     rd.forward(request, response);
                 }
+            }else{
+                if(isValid == true && userInfo.size()>0)
+                    id = userInfo.get(0);
 
+                if (id > 0) {
+                    System.out.println("id " + id);
+                    request.getSession().setAttribute("user", id);
+                    System.out.println("id --- " + id);
+                    RequestDispatcher rd = request.getRequestDispatcher("/menu.jsp");
+                    rd.forward(request, response);
 
+                } else {
+                    request.getSession().setAttribute("error", "Username and password does not match!");
+                    RequestDispatcher rd = request.getRequestDispatcher("/LoginView.jsp");
+                    rd.forward(request, response);
+
+                }
             }
 
-            if(userInfo.size()>0)
-                id = userInfo.get(0);
 
-            if (id > 0) {
-                System.out.println("id " + id);
-                request.getSession().setAttribute("user", id);
-                System.out.println("id --- " + id);
-//                if(admin > 0){
-//                    request.getSession().setAttribute("admin", admin);
-//                }
-                RequestDispatcher rd = request.getRequestDispatcher("/menu.jsp");
-                rd.forward(request, response);
-
-            } else {
-                request.getSession().setAttribute("error", "Username and password does not match!");
-                RequestDispatcher rd = request.getRequestDispatcher("/LoginView.jsp");
-                rd.forward(request, response);
-                
-            }
 
         }catch(Exception e){
             e.printStackTrace();
