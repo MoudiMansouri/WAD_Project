@@ -92,12 +92,12 @@ public class ProfileController extends HttpServlet {
             try {
                 conn = DriverManager.getConnection(url + dbName, userName, password);
                 System.out.println("connected");
-                String uid = (String) request.getSession().getAttribute("ID");
+                String Id = (String) request.getSession().getAttribute("Id");
                 ArrayList al = null;
                 ArrayList pid_list = new ArrayList();
-                String query = "select* from emp";
-                if(uid!=null && !uid.equals("")){
-                   query = "select*from emp where ID = " + uid + ""; 
+                String query = "select* from username";
+                if(Id!=null && !Id.equals("")){
+                   query = "select*from user where Id = " + Id + ""; 
                 
             }
                 System.out.println("query" + query);
