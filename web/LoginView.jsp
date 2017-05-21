@@ -31,12 +31,8 @@
         <link rel='stylesheet' type='text/css' href='./css/style.css'>
         <title>JSP Page</title>
     </head>
-    <body class="form-style-2" onload="check()">
+    <body class="form-style-2" onload="check()" background="C:\Users\Andreylyon\Desktop\clouds.jpg">
         <div id='content'>
-            <div class="header">
-                <img src="./img/btn_playgame.png" width="100px"/>
-                <span class="header-text">Game</span>
-            </div>
             <nav>
                 <ul>
                     <li><a href='#'>Home</a></li>
@@ -77,4 +73,6 @@
 
     </body>
 </html>
+
+
 

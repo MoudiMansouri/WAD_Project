@@ -32,7 +32,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
     </head>
-    <body onload="fillFields()" class="form-style-2">
+    <body onload="fillFields()" class="form-style-2" background="C:\Users\Andreylyon\Desktop\clouds.jpg" >
         <div id="content">
             <nav>
                 <ul>
@@ -80,4 +80,6 @@
 
     </body>
 </html>
+
+
 
