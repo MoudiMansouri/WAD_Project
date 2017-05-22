@@ -33,7 +33,7 @@
 <body>
 
 <c:if test="${sessionScope.user} == 3">
-    <h1>Hello Admin</h1>
+    <h1>Hello NEW USER MY DAD</h1>
 </c:if>
 
 
